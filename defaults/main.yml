@@ -1,0 +1,11 @@
+---
+# general config
+tl_target_dir: /home/talo
+tlg_target_dir: "{{ tl_target_dir }}/public_html"
+tlg_target_subdir: "{{ tl_target_dir }}/public_html/scripts"
+tlg_dir_owner: "{{ ansible_user_id }}"
+tl_graph_download_URL: http://olammi.iki.fi/sw/taloLoggerGraph
+tl_graph_package: taloLoggerGraph_v12b.zip
+
+# datastore config
+IS_DATASTORE_MYSQL: true
