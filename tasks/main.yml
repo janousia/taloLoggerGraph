@@ -60,14 +60,14 @@
 
 - name: Add Apache2 configuration
   template:
-    src=templates/talo.conf.j2
-    dest=/etc/apache2/sites-available/talo
+    src=talo.conf.j2
+    dest=/etc/apache2/sites-available/talo.conf
     owner=root
     group=root
     mode=0644
 
 - name: Disable the default site
-  command: a2dissite default
+  command: a2dissite 000-default
 
 - name: Enable talo virtualhost
   command: a2ensite talo
