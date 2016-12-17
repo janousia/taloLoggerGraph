@@ -12,16 +12,16 @@
   file: dest={{ tlg_target_dir }}/log state=directory owner={{ tlg_dir_owner }} mode=0755
 
 - name: Retrieve taloLoggerGraph installation package
-  get_url: url={{ tl_graph_download_URL }}/{{ tl_graph_package }} dest={{ tl_target_dir }}
+  get_url: url={{ tl_graph_download_URL }}/{{ tl_graph_package }} dest={{ tl_target_dir }}/{{ tl_graph_package }}
 
 - name: Unzip taloLoggerGraph installation package
   unarchive: src={{ tl_target_dir }}/{{ tl_graph_package }} dest={{ tlg_target_subdir }} copy=no
 
 - name: Copy index.php
-  copy: src={{ tlg_target_subdir }}/taloLoggerGraph/index.php dest={{ tlg_target_dir }}/log owner={{ tlg_dir_owner }} group={{ tlg_dir_owner }} mode=0755
+  command: cp {{ tlg_target_subdir }}/taloLoggerGraph/index.php {{ tlg_target_dir }}/log
 
 - name: Copy taloLoggerGraph.conf
-  copy: src={{ tlg_target_subdir }}/taloLoggerGraph/taloLoggerGraph.conf dest={{ tlg_target_dir }}/log owner={{ tlg_dir_owner }} group={{ tlg_dir_owner }} mode=0755
+  command: cp {{ tlg_target_subdir }}/taloLoggerGraph/taloLoggerGraph.conf {{ tlg_target_dir }}/log
 
 - name: Create symlink to getchart.php
   file: src={{ tlg_target_subdir }}/taloLoggerGraph/taloLoggerGraph_getchart.php dest={{ tlg_target_dir }}/log/taloLoggerGraph_getchart.php state=link
